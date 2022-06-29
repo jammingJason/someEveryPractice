@@ -7,14 +7,9 @@ Examples:
 */
 
 function hasOddNumber(arr) {
-	let bln = false;
-	arr.some(function(n) {
-		if (n % 2 !== 0) {
-			// alert();
-			bln = true;
-		}
+	return arr.some(function(n) {
+		return n % 2 !== 0;
 	});
-	return bln;
 }
 
 /*
@@ -27,15 +22,10 @@ Examples:
 */
 
 function hasAZero(num) {
-	let bln = false;
 	let newArr = Array.from(num.toString());
-	newArr.some(function(n) {
-		if (n === '0') {
-			bln = true;
-			return bln;
-		}
+	return newArr.some(function(n) {
+		return n === '0';
 	});
-	return bln;
 }
 
 /*
@@ -49,14 +39,9 @@ Examples:
 */
 
 function hasOnlyOddNumbers(arr) {
-	let bln = true;
-	arr.some(function(value) {
-		if (value % 2 === 0) {
-			bln = false;
-			return bln;
-		}
+	return arr.every(function(value) {
+		return value % 2 !== 0;
 	});
-	return bln;
 }
 
 /*
@@ -70,21 +55,15 @@ Examples:
 */
 
 function hasNoDuplicates(arr) {
-	let bln = true;
-
-	arr.some(function(num) {
-		for (const key in num) {
-			if (Object.hasOwnProperty.call(num, key)) {
-				const element = num[key];
-				console.log(element);
-			}
-		}
+	return arr.every(function(num) {
+		return arr.indexOf(num) === arr.lastIndexOf(num);
 	});
-	return bln;
 }
 
 /*
-Write a function called hasCertainKey which accepts an array of objects and a key, and returns true if every single object in the array contains that key. Otherwise it should return false.
+Write a function called hasCertainKey which accepts an array of objects and a key, 
+and returns true if every single object in the array contains that key. 
+Otherwise it should return false.
 
 Examples:
     var arr = [
@@ -98,10 +77,15 @@ Examples:
     hasCertainKey(arr,'isCatOwner') // false
 */
 
-function hasCertainKey(arr, key) {}
+function hasCertainKey(arr, key) {
+	return arr.every(function(val) {
+		return key in val;
+	});
+}
 
 /*
-Write a function called hasCertainValue which accepts an array of objects and a key, and a value, and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
+Write a function called hasCertainValue which accepts an array of objects and a key, and a value, 
+and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
 
 Examples:
     var arr = [
@@ -116,4 +100,8 @@ Examples:
     
 */
 
-function hasCertainValue(arr, key, searchValue) {}
+function hasCertainValue(arr, key, searchValue) {
+	return arr.every(function(val) {
+		return val[key] === searchValue;
+	});
+}
